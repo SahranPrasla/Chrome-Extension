@@ -4,10 +4,6 @@
   "description": "This extensions provides usefule information to make course selection decisions for UH students.",
   "version": "0.1",
   
-  "action": {
-    "default_title": "UHAssistant"
-  },
-  
   "content_scripts": [
     {
       "matches": [
@@ -24,5 +20,9 @@
 
   "background": {
     "service_worker": "service-worker.js"
+  },
+
+  "action": {
+    "default_title": "Click Me"
   }
 }
