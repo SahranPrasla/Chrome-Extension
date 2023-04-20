@@ -1,8 +1,6 @@
 console.log('Chrome Extension go Brrr!');
 
-chrome.runtime.onMessage.addListener(gotMessage);
-
-function gotMessage(message, sender, sendResponse){
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.txt === 'Clicked'){
     let instructorQuery = 'span[id^="SSR_CLSRCH_F_WK_SSR_INSTR_LONG_"]';
     let instructors = document.querySelectorAll(instructorQuery);
@@ -22,4 +20,4 @@ function gotMessage(message, sender, sendResponse){
       elt.style['background-color'] = 'pink';
     }
   }
-}
+});
