@@ -4,4 +4,12 @@ chrome.action.onClicked.addListener((tab) => {
     txt: 'Clicked'
   }
   chrome.tabs.sendMessage(tab.id, message);
+  chrome.runtime.onConnect.addListener((port) => {
+    console.assert(port.name === "CommLink");
+    port.onMessage.addListener(function(msg) {
+      if (msg.text === "Knock knock")
+        console.log('WORKS!');
+      
+    });
+  });
 });
