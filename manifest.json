@@ -4,6 +4,11 @@
   "description": "This extensions provides usefule information to make course selection decisions for UH students.",
   "version": "0.1",
   
+  "host_permissions": [
+    "https://cougargrades.io/*",
+    "https://www.ratemyprofessors.com/*"
+  ],
+
   "content_scripts": [
     {
       "matches": [

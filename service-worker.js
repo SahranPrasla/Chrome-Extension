@@ -9,7 +9,7 @@ chrome.action.onClicked.addListener((tab) => {
     port.onMessage.addListener(function(msg) {
       if (msg.text === "CONNECTED!")
         console.log('WORKS!');
-      
+        //GET INFO FROM WEBSITES TO SEND TO CONTENT SCRIPTS (FOCUS ON THE GETTING FIRST!)
     });
   });
 });
