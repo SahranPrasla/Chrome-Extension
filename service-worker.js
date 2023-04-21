@@ -7,7 +7,7 @@ chrome.action.onClicked.addListener((tab) => {
   chrome.runtime.onConnect.addListener((port) => {
     console.assert(port.name === "CommLink");
     port.onMessage.addListener(function(msg) {
-      if (msg.text === "Knock knock")
+      if (msg.text === "CONNECTED!")
         console.log('WORKS!');
       
     });
