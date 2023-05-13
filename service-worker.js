@@ -5,11 +5,22 @@ chrome.action.onClicked.addListener((tab) => {
   }
   chrome.tabs.sendMessage(tab.id, message);
   chrome.runtime.onConnect.addListener((port) => {
-    console.assert(port.name === "CommLink");
+    console.assert(port.name === 'CommLink');
     port.onMessage.addListener(function(msg) {
-      if (msg.text === "CONNECTED!")
+      if (msg.text === 'CONNECTED!') {
         console.log('WORKS!');
-        //GET INFO FROM WEBSITES TO SEND TO CONTENT SCRIPTS (FOCUS ON THE GETTING FIRST!)
+        port.postMessage({txt: 'Ready to Recieve'});
+      }
+      else if (msg.text === 'Requesting Link for Name') {
+        console.log(msg.professor);
+        fetch("https://www.ratemyprofessors.com/search/teachers?query="+msg.professor).then(response => {
+          console.log(response);
+          return response.text()
+        }).then((str) => {
+          console.log(str);
+          port.postMessage({txt: 'Passing string for DOM Parsing', html: str});
+        });
+      }
     });
   });
 });
