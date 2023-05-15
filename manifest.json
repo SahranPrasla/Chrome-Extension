@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Course Selection Assistant",
+  "name": "UH Course Selection Assistant",
   "description": "This extensions provides usefule information to make course selection decisions for UH students.",
   "version": "0.1",
   
