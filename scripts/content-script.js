@@ -95,12 +95,11 @@ function parseName(fullName){
 
 // Update names and get grade information
 function updateName(prof, port) {
-  var nameArr = prof.split(' ');
-  parsedName = nameArr[0] + ' ' + nameArr[nameArr.length - 1];
+  parsedName = parseName(prof);
   const a = document.createElement('a');
   a.innerText = elt.innerText;
   elt.innerText = ''
-  a.href = "https://www.ratemyprofessors.com/search/teachers?query="+parsedName;
+  a.href = "https://www.ratemyprofessors.com/search/teachers?query="+parsedName.first+ '%20' +parsedName.last ;
   a.target = '_blank';
   elt.appendChild(a);
       
