@@ -1,4 +1,5 @@
 console.log('Service worker go brrr!')
+
 chrome.action.onClicked.addListener((tab) => {
   let message = {
     txt: 'Clicked'
@@ -7,19 +8,27 @@ chrome.action.onClicked.addListener((tab) => {
   chrome.runtime.onConnect.addListener((port) => {
     console.assert(port.name === 'CommLink');
     port.onMessage.addListener(function(msg) {
-      if (msg.text === 'CONNECTED!') {
-        console.log('WORKS!');
-        port.postMessage({txt: 'Ready to Recieve'});
+      if (msg.text === 'CONNECTED!') { //Checking for connections between service worker and content script
+        port.postMessage({txt: 'Ready to recieve course'});
       }
-      else if (msg.text === 'Requesting Link for Name') {
-        console.log(msg.professor);
-        fetch("https://www.ratemyprofessors.com/search/teachers?query="+msg.professor).then(response => {
-          console.log(response);
-          return response.text()
-        }).then((str) => {
-          console.log(str);
-          port.postMessage({txt: 'Passing string for DOM Parsing', html: str});
+      else if (msg.text === 'Requesting data for Course') {
+        const url = 'https://api.cougargrades.io/catalog/getCourseByName?courseName='+msg.course;
+
+        // Fetching data from Cougar Grades API for Course
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          }
+        }).then(response => {
+          return response.json()
+        }).then(content => {
+          console.log(content);
+          port.postMessage({txt: 'Ready to recieve professor names', courseInfo: content});
         });
+      }
+      else if (msg.text === 'Ready to recieve professor names'){
+
       }
     });
   });

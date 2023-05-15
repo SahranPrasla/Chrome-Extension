@@ -1,3 +1,94 @@
-#pink, #gpa{ /*fix later*/
+#pink{ /*fix later*/
   background-color: pink;
+}
+
+div {
+  display: block;
+}
+
+.enrollment_bar_item {
+  outline: 2px solid transparent;
+}
+
+.enrollment_bar_item+.enrollment_bar_item {
+  margin-left: 2px;
+}
+
+.Progress {
+  display: flex;
+  height: 8px;
+  overflow: hidden;
+  background-color: var(--color-neutral-muted);
+  border-radius: 6px;
+  outline: 1px solid transparent;
+}
+
+.enrollment_progress {
+  margin-bottom: 1px;
+}
+
+.enrollment_bar {
+  padding-top: 6px;
+  padding-bottom: 0;
+  height: 10px;
+  width: 500px;
+}
+
+.GPA_STD_DROP {
+  color: rgba(0,0,0,.54);
+}
+
+.GPA_STD_DROP_Container {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: .8em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.3rem;
+  border: 2px solid rgba(50,50,50,.25);
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.enrollment_bar_key {
+  font-size: 12px;
+  line-height: 1.5;
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+  word-wrap: break-word;
+}
+
+.enrollment_bar_key li {
+  display: inline;
+  margin-top: 0.15rem;
+  margin-right: 0.4rem;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.enrollment_bar_key a svg {
+  fill: currentColor;
+  display: inline-block;
+  overflow: visible;
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.enrollment_bar_key li span{
+  vertical-align: middle;
 }
