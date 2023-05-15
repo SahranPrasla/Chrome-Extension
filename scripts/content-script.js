@@ -83,7 +83,14 @@ function updateCourseName(course, port){
 
 // Parse name and return array of parts
 function parseName(fullName){
-  return fullName.split(' ');
+  nameArr = fullName.split(' ');
+
+  if(nameArr.length == 3) {
+    return {first: nameArr[0], middle: nameArr[1], last: nameArr[2]}
+  }
+  else {
+    return {first: nameArr[0], last: nameArr[1]}
+  }
 }
 
 // Update names and get grade information
