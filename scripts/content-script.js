@@ -68,7 +68,7 @@ function addGradeInfo(course, courseInfo){
   course.parentNode.insertBefore(div2, course.nextSibling.nextSibling)
 }
 
-// Change course Name to hyperlink and get frade information
+// Change course Name to hyperlink and get grade information
 function updateCourseName(course, port){
   port.onMessage.addListener(function(msg) {
     if (msg.txt === 'Ready to recieve course'){
@@ -93,30 +93,16 @@ function parseName(fullName){
   }
 }
 
-// Update names and get grade information
-function updateName(prof, port) {
-  parsedName = parseName(prof);
+// Change professor Name to hyperlink and get professor information
+function addProfessorInfo(professor, professorInfo){
+  parsedName = parseName(professor);
   const a = document.createElement('a');
   a.innerText = elt.innerText;
   elt.innerText = ''
   a.href = "https://www.ratemyprofessors.com/search/teachers?query="+parsedName.first+ '%20' +parsedName.last ;
   a.target = '_blank';
   elt.appendChild(a);
-      
-  // port.onMessage.addListener(function(msg) {
-  //   if (msg.txt === 'Ready to recieve professor names'){
-  //     port.postMessage({text: 'Requesting Link for Name', professor: parsedName});
-  //   }
 
-  //   else if (msg.txt === 'Passing string for DOM Parsing'){
-  //     var parser = new DOMParser();
-  //     var doc = parser.parseFromString(msg.html, 'text/html');
-  //     //console.log(doc);
-  //     var teacherLink = doc.getElementsByClassName('TeacherCard__StyledTeacherCard-syjs0d-0 dLJIlx');
-  //     //console.log(teacherLink);
-  //   }
-  // });
-  
   const div = document.createElement('div');
   const span = document.createElement('span');
   span.innerText = 'RATINGS GO HERE';
@@ -128,6 +114,20 @@ function updateName(prof, port) {
     elt.parentNode.insertBefore(elt.nextSibling, div)
   }
   elt.id = 'pink'; // Change later
+}
+
+// Update names and get grade information
+function updateProfessorName(professor, port) {
+  port.onMessage.addListener(function(msg) {
+    if (msg.txt === 'Ready to recieve professor names'){
+      parsedName = parseName(professor);
+      port.postMessage({text: 'Requesting Link for Name', professor: parsedName});
+    }
+
+    else if (msg.txt === 'Passing string for DOM Parsing'){
+      //Wait
+    }
+  });
 }
 
 //For running code on click due to Web Socket issue
@@ -148,6 +148,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
   // Iterate over all professors in search and add info
   for (elt of instructors){
-    parsedName = updateName(elt.innerText, port);
+    //addProfessorInfo(elt.innerText, 'PLACEHOLDER'); //THIS IS PLACEHOLDER
+    updateProfessorName(elt.innerText, port);
   }
 });
